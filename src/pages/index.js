@@ -1,43 +1,22 @@
 import React from "react"
-import { graphql, Link, useStaticQuery } from 'gatsby'
+import { graphql, Link } from "gatsby"
+import Img from 'gatsby-image/withIEPolyfill'
+
 
 import Layout from "../components/layout"
-import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = ({data}) => {
-
-
-  console.log(data.allStrapiPages)
-
+  console.log(data)
   return (
   <Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-     <ul>
-       {data.allStrapiPages.edges.map(({node}) => {
-         return(
-           <div>{node.title}</div>
-         )
-       })}
-     </ul>
+    <div style={{ marginBottom: `1.45rem` }}>
     </div>
-    <Link to="/page-2/">Go to page 2</Link>
+    <Link to="/charpente/">Charpente</Link>
+    <Link to="/couverture/">Couverture</Link>
+    <Link to="/renovation/">Renovation</Link>
   </Layout>
 )}
 
 export default IndexPage
-export const pageQuery = graphql`
-    query IndexQuery {
-      allStrapiPages {
-        edges {
-          node {
-            title
-          }
-        }
-      }
-    }
-  `;
