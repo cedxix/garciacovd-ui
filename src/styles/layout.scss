@@ -25,6 +25,16 @@ body {
   .carousel-wrapper {
     border: 2px orange $color-primary;
   }
+
+  .page-header {
+    font-size: 2em;
+    color: $color-primary;
+  }
+  .section {
+    &-image {
+      border: 0.35em solid $color-secondary;
+    }
+  }
   .html-content {
     font-size: 1.35em;
     h1 {

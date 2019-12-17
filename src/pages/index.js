@@ -94,10 +94,6 @@ export const HomePageQuery = graphql`
             }
             sections {
                 content
-                gallery {
-                    url
-                    name
-                }
                 isLeft
                 isDark
             }

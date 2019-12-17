@@ -20,7 +20,8 @@ module.exports = {
         apiURL: 'http://api.garciacouverture.fr:1337',
         contentTypes: [ // List of the Content Types you want to be able to request from Gatsby.
           'pages',
-          'galleries'
+          'galleries',
+          'couvertures'
         ],
         queryLimit: 1000,
       },
