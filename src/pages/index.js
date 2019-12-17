@@ -11,9 +11,10 @@ import HTMLRender from "../components/HtmlRenderer"
 
 const IndexPage = (props) => {
   const { strapiPages, allStrapiGalleries } = props.data
-
+  const { publicURL = null } = strapiPages.backgroundPicture && strapiPages.backgroundPicture
+  console.log(strapiPages)
   return (
-    <Layout isHome>
+    <Layout isHome bodyBackground={ publicURL ? `http://api.garciacouverture.com${ publicURL }` : null }>
       <SEO title="Artisan couvreur à toulouse | Garcia Couvreur"/>
       <div className="row">
         <div className="col-auto mx-auto">
@@ -35,10 +36,10 @@ const IndexPage = (props) => {
           } }>
             { allStrapiGalleries.edges.map(({ node }) => {
               console.log(node.title)
-              const fluidImg = node.image && node.image.childImageSharp && node.image.childImageSharp.fluid;
+              const fluidImg = node.image && node.image.childImageSharp && node.image.childImageSharp.fluid
               return fluidImg ? (
                 <Carousel.Item>
-                  <Img fluid={ fluidImg } style={{height:'350px'}}/>
+                  <Img fluid={ fluidImg } style={ { height: "350px" } }/>
                   { node.title && (
                     <Carousel.Caption>
                       <h3>{ node.title }</h3>
@@ -46,7 +47,7 @@ const IndexPage = (props) => {
                     </Carousel.Caption>
                   ) }
                 </Carousel.Item>
-              ) : null;
+              ) : null
             }) }
           </Carousel>
         </div>
@@ -88,6 +89,9 @@ export const HomePageQuery = graphql`
         }
         strapiPages(id: {eq: "Pages_2"}, isPublished: {eq: true}) {
             id
+            backgroundPicture {
+                publicURL
+            }
             sections {
                 content
                 gallery {

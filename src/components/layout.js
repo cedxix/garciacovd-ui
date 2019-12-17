@@ -20,16 +20,17 @@ const Layout = ({ children, bodyBackground, isHome }) => {
           }
       }
   `)
-  console.log("layout", isHome)
+  console.log("layout", isHome, bodyBackground)
   const style = isHome ? {
-    backgroundImage: `url(${ data.file.publicURL })`,
-    backgroundSize: "cover",
-    backgroundPosition: "center center",
-    backgroundRepeat: "no-repeat",
+    backgroundImage: `url(${ data.file.publicURL }), url(${bodyBackground})`,
+    backgroundSize: "cover, cover",
+    backgroundPosition: "center center, bottom center",
+    backgroundRepeat: "no-repeat, no-repeat",
     paddingTop: "5rem",
     width: "100%",
     maxHeight: "30em",
   } : {}
+
   return (
     <>
       <Header siteTitle={ data.site.siteMetadata.title }/>
