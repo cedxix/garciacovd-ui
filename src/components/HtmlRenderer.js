@@ -4,10 +4,12 @@ import Showdown  from 'showdown'
 
 
 export const HTMLRender = ({markdown}) => {
-  console.log(markdown)
   const converter = new Showdown.Converter();
   return(
-    <div dangerouslySetInnerHTML={{__html:converter.makeHtml(markdown)}} />
+    <div
+      className="w-100 overflow-hidden html-content"
+      dangerouslySetInnerHTML={{__html:converter.makeHtml(markdown)}}
+    />
   )
 }
 HTMLRender.propTypes = {

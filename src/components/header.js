@@ -2,22 +2,13 @@ import PropTypes from "prop-types"
 import React from "react"
 
 import { Link, useStaticQuery, graphql } from "gatsby"
-import Img from "gatsby-image"
-import colors from '../styles/colors'
+import colors from "../styles/colors"
 
 const Header = ({ siteTitle }) => {
   const data = useStaticQuery(graphql`
       query MyQuery {
           file(relativePath: {eq: "logo-2.png"}) {
-              childImageSharp {
-                  fluid {
-                      src
-                      srcSet
-                      base64
-                      aspectRatio
-                      sizes
-                  }
-              }
+              publicURL
           }
       }
 
@@ -25,23 +16,23 @@ const Header = ({ siteTitle }) => {
 
   return (
     <header
-      style={ { marginBottom: `1.45rem`, borderBottom: `2px solid ${colors.primary}` } }
+      style={ { borderBottom: `2px solid ${ colors.primary }` } }
       className="container-fluid"
     >
       <div className="container">
         <div className="row d-flex h-100 p-3 mx-auto flex-row justify-content-between align-items-center">
           <div className="col-md-3">
             <Link to="/">
-              <Img fluid={ data.file.childImageSharp.fluid } alt="A corgi smiling happily"/>
+              <img src={ data.file.publicURL } alt="garcia couvreur logo" style={ { width: "100%" } }/>
             </Link>
           </div>
           <div className="col-auto">
             <nav className="nav nav-masthead justify-content-center">
               <Link className="nav-link" activeClassName="active" to="/">Accueil</Link>
-              <Link className="nav-link" activeClassName="active" to="couverture">Couverture</Link>
-              <Link className="nav-link" activeClassName="active" to="charpente">Charpente</Link>
-              <Link className="nav-link" activeClassName="active" to="renovation">Renovation</Link>
-              <Link className="nav-link" activeClassName="active" to="contacts">Contactez-nous</Link>
+              <Link className="nav-link" activeClassName="active" to="couverture/">Couverture</Link>
+              <Link className="nav-link" activeClassName="active" to="charpente/">Charpente</Link>
+              <Link className="nav-link" activeClassName="active" to="renovation/">Renovation</Link>
+              <Link className="nav-link" activeClassName="active" to="contacts/">Contactez-nous</Link>
             </nav>
           </div>
         </div>

@@ -5,6 +5,7 @@ module.exports = {
     author: `@gatsbyjs`,
   },
   plugins: [
+    `gatsby-plugin-sass`,
     `gatsby-plugin-react-helmet`,
     {
       resolve: `gatsby-source-filesystem`,
@@ -19,6 +20,7 @@ module.exports = {
         apiURL: 'http://api.garciacouverture.fr:1337',
         contentTypes: [ // List of the Content Types you want to be able to request from Gatsby.
           'pages',
+          'galleries'
         ],
         queryLimit: 1000,
       },

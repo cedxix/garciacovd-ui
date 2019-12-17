@@ -1,61 +1,66 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
-import Img from 'gatsby-image/withIEPolyfill'
-import Showdown  from 'showdown'
+import { graphql } from "gatsby"
+import Img from "gatsby-image/withIEPolyfill"
 
 import Layout from "../components/layout"
 import SEO from "../components/seo"
 import HTMLRender from "../components/HtmlRenderer"
 
-const Couverture = ({data}) => {
-  console.log(data)
+const Couverture = (props) => {
+  const { strapiPages } = props.data
+
+  console.log("props", strapiPages)
+
   return (
     <Layout>
-      <SEO title="Home" />
-      <div style={{ marginBottom: `1.45rem` }}>
-        <ul>
-          {data.allStrapiPages.edges.map(({node}) => {
-            return(
-              <div key={node.id}>
-                <h1>{node.title}</h1>
-                <div>{node.sections.map((section) => (
-                  <div>
-                    <Img fluid={section.headerPicture.childImageSharp.fluid}/>
-                    <HTMLRender markdown={section.content} />
-                  </div>
-                ))}</div>
+      <SEO title="Home"/>
+      <div key={ strapiPages.id }>
+        <h1>{ strapiPages.title }</h1>
+        <div>
+          { strapiPages.sections.map((section) => {
+            const sectionImg = section.headerPicture && section.headerPicture.childImageSharp && section.headerPicture.childImageSharp.fluid
+            return (
+              <div>
+                { sectionImg && (<Img fluid={ sectionImg }/>) }
+                <HTMLRender markdown={ section.content }/>
               </div>
             )
-          })}
-        </ul>
+          }) }
+        </div>
       </div>
-
     </Layout>
-  )}
+  )
+}
 
 export default Couverture
-export const pageQuery = graphql`
-    query CouvertureQuery {
-        allStrapiPages {
-            edges {
-                node {
-                    id
-                    title
-                    sections {
-                        isDark
-                        isLeft
-                        headerPicture {
-                            childImageSharp {
-                                fluid(maxWidth: 1200, maxHeight: 350, , quality: 80) {
-                                    ...GatsbyImageSharpFluid
-                                    presentationWidth
-                                }
-                            }
+export const CouverturePageQuery = graphql`
+    query CouverturePageQuery {
+        strapiPages(id: {eq: "Pages_1"}, isPublished: {eq: true}) {
+            id
+            title
+            strapiId
+            backgroundPicture {
+                publicURL
+            }
+            sections {
+                content
+                gallery {
+                    url
+                    name
+                }
+                isLeft
+                isDark
+                headerPicture {
+                    childImageSharp {
+                        fluid(maxHeight: 300, fit: COVER) {
+                            aspectRatio
+                            src
+                            srcSet
                         }
-                        content
                     }
                 }
             }
+            menu_name
         }
     }
-`;
+`

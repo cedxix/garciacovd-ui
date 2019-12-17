@@ -1,0 +1,56 @@
+$color-primary: #fc4a1a;
+$color-secondary: #f7b733;
+$color-secondary-light: #f7f2da;
+$color-text: #333333;
+$color-light-text: #666666;
+
+@import "~bootstrap/scss/mixins/breakpoints";
+
+body {
+  color: $color-text;
+  font-family: 'Lato', sans-serif;
+  .nav {
+    .nav-link {
+      text-transform: uppercase;
+      color: #000000;
+      transition: all 300ms ease-in-out;
+
+      &.active {
+        background: #FC4A1A;
+        color: #ffffff;
+        font-weight: 600;
+      }
+    }
+  }
+  .carousel-wrapper {
+    border: 2px orange $color-primary;
+  }
+  .html-content {
+    font-size: 1.35em;
+    h1 {
+      font-size: 2em;
+    }
+    h2 {
+      color: $color-primary;
+      margin-bottom: 1em;
+    }
+    blockquote  {
+      padding: 0 0.5em;
+      margin: 1.25em 0.25em;
+      border-left: solid $color-secondary 8px;
+
+      &+ & {
+        background: red;
+      }
+      > img {
+
+      }
+    }
+
+    img {
+      max-height: 500px;
+      max-width: 100%;
+      margin: 1.25em 0;
+    }
+  }
+}
